@@ -7,9 +7,6 @@ spring:
   application:
     name: gateway
   cloud:
-    consul:
-      discovery:
-        register: false
     loadbalancer:
       cache:
         ttl: 30s
