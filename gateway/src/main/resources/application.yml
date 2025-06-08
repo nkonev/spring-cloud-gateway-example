@@ -23,6 +23,4 @@ spring:
           routes:
             - uri: http://localhost:8762
               predicates:
-                - name: Path
-                  args:
-                    - /foo
+                - Path=/foo
