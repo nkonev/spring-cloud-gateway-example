@@ -1,4 +1,4 @@
-# logging.level.org.springframework.cloud.gateway.filter: trace
+# logging.level.org.springframework.cloud.gateway: trace
 
 server:
   port: 8282
@@ -11,14 +11,18 @@ spring:
       cache:
         ttl: 30s
     gateway:
-      route-filter-cache-enabled: true
-      predicate:
-        cloud-foundry-route-service:
-          enabled: false
-      httpclient:
-        connect-timeout: 1000
-        response-timeout: 5s
-      routes:
-        - predicates:
-            - Path=/foo
-          uri: http://localhost:8762
+      server:
+        webflux:
+          route-filter-cache-enabled: true
+          predicate:
+            cloud-foundry-route-service:
+              enabled: false
+          httpclient:
+            connect-timeout: 1000
+            response-timeout: 5s
+          routes:
+            - uri: http://localhost:8762
+              predicates:
+                - name: Path
+                  args:
+                    - /foo
